@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import TextEditor from './components/TextEditor';
 
-function App() {
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+function MyApp() {
+  const [value, onChange] = useState<Value>(new Date());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: '300vh' }}>
+      <Calendar onChange={onChange} value={value} />
+      <div style={{ background: 'red' }}>
+        <TextEditor />
+      </div>
+      <div style={{ marginTop: '100px', background: '#eeeeee' }}>안녕하쇼ㅔ요</div>
     </div>
   );
 }
 
-export default App;
+export default MyApp;
